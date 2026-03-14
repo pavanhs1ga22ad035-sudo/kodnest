@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 const navLinks = [
   { href: "/home", label: "Home" },
-  { href: "/courses", label: "Courses" },
+  { href: "/my-learning/class/list", label: "Courses" },
   { href: "/practice", label: "Practice" },
   { href: "/placements", label: "Placements" },
   { href: "/community", label: "Community" },
