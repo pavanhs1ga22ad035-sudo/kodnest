@@ -66,11 +66,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (url.pathname === '/api/dashboard' && req.method === 'GET') {
-    sendJson(res, 200, {
-      hero: data.hero,
-      liveSessions: data.liveSessions,
-      selfPaced: data.selfPaced
-    });
+    sendJson(res, 200, data.dashboard);
     return;
   }
 

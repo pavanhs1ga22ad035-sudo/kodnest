@@ -1,6 +1,6 @@
-# kodnest
+# KodNest Neo LMS
 
-KodNest LMS clone with a lightweight backend and Vercel-ready API routes.
+A beautiful LMS dashboard inspired by your uploaded dark/orange design language, with a unique layout and full frontend + backend flow.
 
 ## Run locally
 
@@ -8,17 +8,17 @@ KodNest LMS clone with a lightweight backend and Vercel-ready API routes.
 node server.js
 ```
 
-Then open `http://127.0.0.1:4173`.
+Open: `http://127.0.0.1:4173`
 
 ## API endpoints
 
 - `GET /api/profile`
 - `GET /api/dashboard`
 
-## Deploy on Vercel
+## Vercel deploy
 
-1. Push this repository to GitHub.
-2. Import the repo in Vercel.
-3. Deploy (no extra build settings needed).
+1. Push this repo to GitHub.
+2. Import the repository in Vercel.
+3. Click **Deploy**.
 
-The static frontend is served from root files and backend endpoints are served from `api/profile.js` and `api/dashboard.js`.
+Static UI files are at root, and Vercel functions are in `api/`.

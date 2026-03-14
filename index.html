@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KodNest LMS Replica</title>
+    <title>KodNest Neo LMS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,67 +14,98 @@
   </head>
   <body>
     <header class="topbar">
-      <div class="logo">kod<span>Nest</span></div>
+      <div class="brand">
+        <span class="k">K</span>odNest <small>Neo</small>
+      </div>
+
       <nav class="navlinks">
-        <a class="active" href="#">Home</a>
+        <a href="#" class="active">Dashboard</a>
         <a href="#">Courses</a>
         <a href="#">Practice</a>
-        <a class="placements" href="#">Placements <span class="crown">👑</span></a>
-        <a href="#">Community ▾</a>
+        <a href="#">Placements</a>
+        <a href="#">Community</a>
       </nav>
-      <div class="actions">
+
+      <div class="header-actions">
         <button class="icon-btn">✉</button>
-        <button class="icon-btn active">₹</button>
-        <button class="icon-btn">⌁</button>
+        <button class="icon-btn">⟳</button>
         <button class="icon-btn">☾</button>
-        <button id="profileToggle" class="avatar">👾</button>
+        <button id="profileToggle" class="profile-chip">PH</button>
       </div>
-      <aside id="profileMenu" class="profile-menu hidden">
-        <div class="profile-head">
-          <div class="avatar large" id="profileAvatar">👾</div>
-          <div>
-            <h3 id="profileName">pavan</h3>
-            <p id="profileBatch">KOD-VTU-INTERN-BATCH8</p>
-            <span id="profileStatus">Online</span>
-          </div>
-        </div>
-        <ul id="profileLinks"></ul>
-      </aside>
     </header>
 
-    <main class="container">
-      <section class="hero">
-        <div class="hero-left">
-          <p class="tagline" id="heroTagline">FROM LEARNING TO EARNING</p>
-          <h1 id="heroTitle">Ready for your dream job, Pavan H.S?</h1>
-          <p class="subtitle" id="heroSubtitle">Code your way to success: Learn, Build, Achieve with KodNest!</p>
-          <div class="chips" id="heroChips"></div>
-          <button class="cta">Enroll Today →</button>
-        </div>
-        <div class="hero-right">
-          <h2 id="assistantTitle">⚡ Meet BroKod</h2>
-          <p id="assistantSubtitle">Your AI learning assistant, available 24/7 to guide you through your coding journey.</p>
-          <button>Chat with BroKod →</button>
+    <main class="layout">
+      <section class="hero-panel">
+        <p class="eyebrow" id="heroEyebrow"></p>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSubtitle"></p>
+        <div class="hero-actions">
+          <button id="heroPrimaryBtn" class="btn btn-primary">Continue Learning</button>
+          <button id="heroSecondaryBtn" class="btn btn-ghost">View Roadmap</button>
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-title-row">
-          <h3>Live Sessions</h3>
-          <div class="slider-controls">
-            <button>‹</button><button>›</button>
+      <aside class="profile-panel" id="profilePanel">
+        <div class="profile-head">
+          <div class="avatar" id="profileAvatar">PH</div>
+          <div>
+            <h2 id="profileName"></h2>
+            <p id="profileProgram"></p>
+            <span id="profileStatus"></span>
           </div>
         </div>
-        <div class="cards-grid" id="liveSessions"></div>
+        <div class="profile-metrics">
+          <div>
+            <h4 id="profileStreak"></h4>
+            <p>Day Streak</p>
+          </div>
+          <div>
+            <h4 id="profilePoints"></h4>
+            <p>Total XP</p>
+          </div>
+        </div>
+      </aside>
+
+      <section class="stats-grid" id="quickStats"></section>
+
+      <section class="card large-card">
+        <div class="section-head">
+          <h3>Upcoming Live Sessions</h3>
+          <button class="link-btn">View all</button>
+        </div>
+        <div id="liveSessions" class="session-list"></div>
       </section>
 
-      <section class="section self-paced">
-        <h3>Self-Paced Courses</h3>
-        <div id="selfPacedCard"></div>
+      <section class="card">
+        <div class="section-head">
+          <h3>Learning Paths</h3>
+        </div>
+        <div id="learningPaths" class="path-list"></div>
       </section>
 
-      <div class="floating-brokod">BroKod</div>
+      <section class="card">
+        <div class="section-head">
+          <h3>Priority Tasks</h3>
+        </div>
+        <ul id="taskList" class="task-list"></ul>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h3>Announcements</h3>
+        </div>
+        <div id="announcements" class="announcement-list"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h3>Leaderboard</h3>
+        </div>
+        <ol id="leaderboard" class="leaderboard"></ol>
+      </section>
     </main>
+
+    <div id="mobileProfileMenu" class="mobile-profile hidden"></div>
 
     <script src="script.js"></script>
   </body>
