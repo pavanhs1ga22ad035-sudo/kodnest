@@ -422,3 +422,85 @@ body {
     display: none;
   }
 }
+
+
+.course-library {
+  grid-column: span 8;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.course-item {
+  border: 1px solid var(--line);
+  background: #fbfcff;
+  border-radius: 14px;
+  padding: 0.9rem;
+}
+
+.course-item h4 {
+  margin: 0;
+}
+
+.course-item p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: 0.35rem 0 0.7rem;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+}
+
+.course-meta span {
+  background: #eef2fd;
+  color: #3a4f83;
+  font-size: 0.76rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+
+.play-btn {
+  width: 100%;
+}
+
+.video-player-card {
+  grid-column: span 8;
+}
+
+.video-frame-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0b0e15;
+}
+
+.video-frame-wrap iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+}
+
+.video-meta {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1080px) {
+  .course-library,
+  .video-player-card {
+    grid-column: 1 / -1;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}

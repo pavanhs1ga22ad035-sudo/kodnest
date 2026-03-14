@@ -70,6 +70,11 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (url.pathname === '/api/courses' && req.method === 'GET') {
+    sendJson(res, 200, data.courses);
+    return;
+  }
+
   if (req.method === 'GET' || req.method === 'HEAD') {
     if (req.method === 'HEAD' && url.pathname.startsWith('/api/')) {
       res.writeHead(200);

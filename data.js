@@ -101,7 +101,49 @@ const data = {
       { rank: 3, name: 'Aishwarya M', points: 2795 },
       { rank: 4, name: 'Harsha V', points: 2610 }
     ]
-  }
+  },
+  courses: [
+    {
+      id: 'python-ai',
+      title: 'Python Basics to AI Workflow',
+      mentor: 'KodNest Python Team',
+      level: 'Beginner',
+      duration: '2h 37m',
+      lessons: 18,
+      youtubeId: 'rfscVS0vtbw',
+      description: 'Learn Python fundamentals and how they connect to modern AI workflows.'
+    },
+    {
+      id: 'javascript-web',
+      title: 'Modern JavaScript for Web Development',
+      mentor: 'Frontend Guild',
+      level: 'Intermediate',
+      duration: '3h 26m',
+      lessons: 24,
+      youtubeId: 'PkZNo7MFNFg',
+      description: 'Master JavaScript concepts used in real-world frontend projects.'
+    },
+    {
+      id: 'system-design',
+      title: 'System Design Fundamentals',
+      mentor: 'Architecture Squad',
+      level: 'Intermediate',
+      duration: '1h 42m',
+      lessons: 12,
+      youtubeId: 'UzLMhqg3_Wc',
+      description: 'Understand scalability, reliability, and backend design patterns.'
+    },
+    {
+      id: 'sql-crash',
+      title: 'SQL for Interviews & Projects',
+      mentor: 'Data Faculty',
+      level: 'Beginner',
+      duration: '4h 20m',
+      lessons: 30,
+      youtubeId: 'HXV3zeQKqGY',
+      description: 'Build confidence in SQL queries, joins, and optimization basics.'
+    }
+  ]
 };
 
 module.exports = data;

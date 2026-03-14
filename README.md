@@ -2,6 +2,13 @@
 
 A beautiful LMS dashboard inspired by your uploaded dark/orange design language, with a unique layout and full frontend + backend flow.
 
+## Features
+
+- Modern LMS dashboard UI
+- Backend-powered data APIs
+- Course library with **Play Class** support
+- YouTube embedded class player
+
 ## Run locally
 
 ```bash
@@ -14,6 +21,7 @@ Open: `http://127.0.0.1:4173`
 
 - `GET /api/profile`
 - `GET /api/dashboard`
+- `GET /api/courses`
 
 ## Vercel deploy
 

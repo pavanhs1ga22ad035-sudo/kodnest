@@ -20,7 +20,7 @@
 
       <nav class="navlinks">
         <a href="#" class="active">Dashboard</a>
-        <a href="#">Courses</a>
+        <a href="#courseLibrary">Courses</a>
         <a href="#">Practice</a>
         <a href="#">Placements</a>
         <a href="#">Community</a>
@@ -81,6 +81,31 @@
           <h3>Learning Paths</h3>
         </div>
         <div id="learningPaths" class="path-list"></div>
+      </section>
+
+      <section id="courseLibrary" class="card course-library large-card">
+        <div class="section-head">
+          <h3>Course Library (Click Play to start class)</h3>
+          <span class="badge">YouTube Classes</span>
+        </div>
+        <div id="courseGrid" class="course-grid"></div>
+      </section>
+
+      <section id="videoPlayerCard" class="card large-card video-player-card hidden">
+        <div class="section-head">
+          <h3 id="videoTitle">Class Player</h3>
+          <button id="closePlayer" class="link-btn">Close</button>
+        </div>
+        <div class="video-frame-wrap">
+          <iframe
+            id="coursePlayer"
+            src=""
+            title="Course video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p id="videoMeta" class="video-meta"></p>
       </section>
 
       <section class="card">
