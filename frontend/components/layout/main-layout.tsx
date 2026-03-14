@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
+  { href: "/home", label: "Home" },
   { href: "/courses", label: "Courses" },
   { href: "/practice", label: "Practice" },
   { href: "/placements", label: "Placements" },
