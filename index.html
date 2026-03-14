@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KodNest LMS Replica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="logo">kod<span>Nest</span></div>
+      <nav class="navlinks">
+        <a class="active" href="#">Home</a>
+        <a href="#">Courses</a>
+        <a href="#">Practice</a>
+        <a class="placements" href="#">Placements <span class="crown">👑</span></a>
+        <a href="#">Community ▾</a>
+      </nav>
+      <div class="actions">
+        <button class="icon-btn">✉</button>
+        <button class="icon-btn active">₹</button>
+        <button class="icon-btn">⌁</button>
+        <button class="icon-btn">☾</button>
+        <button id="profileToggle" class="avatar">👾</button>
+      </div>
+      <aside id="profileMenu" class="profile-menu hidden">
+        <div class="profile-head">
+          <div class="avatar large">👾</div>
+          <div>
+            <h3>pavan</h3>
+            <p>KOD-VTU-INTERN-BATCH8</p>
+            <span>Online</span>
+          </div>
+        </div>
+        <ul>
+          <li>👤 My Account</li>
+          <li>⌨ Compiler</li>
+          <li>💬 User Feedback</li>
+          <li>📄 Resume Builder</li>
+          <li>🧾 Mock Interview</li>
+          <li>📅 Apply for Leave</li>
+          <li>📖 Session diaries</li>
+          <li>↪ Log Out</li>
+        </ul>
+      </aside>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-left">
+          <p class="tagline">FROM LEARNING TO EARNING</p>
+          <h1>Ready for your dream job, Pavan H.S?</h1>
+          <p class="subtitle">Code your way to success: Learn, Build, Achieve with KodNest!</p>
+          <div class="chips">
+            <span>&lt;/&gt; Learn</span>
+            <span>🔗 Build</span>
+            <span>◎ Achieve</span>
+          </div>
+          <button class="cta">Enroll Today →</button>
+        </div>
+        <div class="hero-right">
+          <h2>⚡ Meet BroKod</h2>
+          <p>Your AI learning assistant, available 24/7 to guide you through your coding journey.</p>
+          <button>Chat with BroKod →</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title-row">
+          <h3>Live Sessions</h3>
+          <div class="slider-controls">
+            <button>‹</button><button>›</button>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="course-card cyan">
+            <div class="card-main">
+              <div class="title-row">
+                <div class="letter">P</div>
+                <div>
+                  <h4>Python With Generative AI - 2026 - ...</h4>
+                  <p>Mentor: KodNest</p>
+                </div>
+                <span class="status">✓ Completed</span>
+              </div>
+              <div class="timing">
+                <span>Class Time</span>
+                <span>08:00 AM - 09:30 AM</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span>Get Subscription</span>
+              <div>✎ ↻ 🎥</div>
+            </div>
+          </article>
+
+          <article class="course-card orange">
+            <div class="card-main">
+              <div class="title-row">
+                <div class="letter">P</div>
+                <div>
+                  <h4>Python With Generative AI - 2026 - ...</h4>
+                  <p>Mentor: KodNest</p>
+                </div>
+                <span class="status">✓ Completed</span>
+              </div>
+              <div class="timing">
+                <span>Class Time</span>
+                <span>08:00 AM - 09:30 AM</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span>Get Subscription</span>
+              <div>✎ ↻ 🎥</div>
+            </div>
+          </article>
+
+          <article class="course-card violet">
+            <div class="card-main">
+              <div class="title-row">
+                <div class="letter">P</div>
+                <div>
+                  <h4>Python With Generative AI - 2026 - ...</h4>
+                  <p>Mentor: KodNest</p>
+                </div>
+                <span class="status">✓ Completed</span>
+              </div>
+              <div class="timing">
+                <span>Class Time</span>
+                <span>08:00 AM - 09:30 AM</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span>Get Subscription</span>
+              <div>✎ ↻ 🎥</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section self-paced">
+        <h3>Self-Paced Courses</h3>
+        <article class="course-card violet">
+          <div class="card-main">
+            <div class="title-row">
+              <div class="letter">A</div>
+              <div>
+                <h4>Aptitude and Reasoning</h4>
+                <p>Mentor: KodNest</p>
+              </div>
+              <span class="status alt">Self-Paced</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <div class="floating-brokod">BroKod</div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
