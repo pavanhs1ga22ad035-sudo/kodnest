@@ -1,0 +1,283 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  MENTOR
+  INSTRUCTOR
+  ADMIN
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  DROPPED
+  PAUSED
+}
+
+enum TopicType {
+  VIDEO
+  ARTICLE
+  QUIZ
+  ASSIGNMENT
+  LIVE_CLASS
+}
+
+enum SessionStatus {
+  SCHEDULED
+  LIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  EXCUSED
+  LATE
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum LeaveType {
+  SICK
+  PERSONAL
+  EMERGENCY
+  VACATION
+  OTHER
+}
+
+enum JobApplicationStatus {
+  APPLIED
+  IN_REVIEW
+  SHORTLISTED
+  INTERVIEW_SCHEDULED
+  OFFERED
+  REJECTED
+  JOINED
+}
+
+model User {
+  id                String              @id @default(cuid())
+  email             String              @unique
+  passwordHash      String
+  fullName          String
+  phone             String?
+  avatarUrl         String?
+  role              Role                @default(STUDENT)
+  isActive          Boolean             @default(true)
+  lastLoginAt       DateTime?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  enrollments       Enrollment[]
+  topicProgress     TopicProgress[]
+  liveSessionsAsHost LiveSession[]      @relation("LiveSessionHost")
+  sessionAttendance SessionAttendance[]
+  leaveRequests     LeaveRequest[]
+  jobApplications   JobApplication[]
+}
+
+model Course {
+  id                String          @id @default(cuid())
+  title             String
+  slug              String          @unique
+  shortDescription  String
+  description       String
+  thumbnailUrl      String?
+  level             CourseLevel
+  durationInHours   Int?
+  isPublished       Boolean         @default(false)
+  createdById       String
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  modules           Module[]
+  enrollments       Enrollment[]
+  liveSessions      LiveSession[]
+  jobPlacements     JobPlacement[]
+
+  @@index([createdById])
+}
+
+model Module {
+  id                String          @id @default(cuid())
+  courseId          String
+  title             String
+  description       String?
+  sequenceNo        Int
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  course            Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  topics            Topic[]
+
+  @@unique([courseId, sequenceNo])
+  @@index([courseId])
+}
+
+model Topic {
+  id                String          @id @default(cuid())
+  moduleId          String
+  title             String
+  content           String?
+  topicType         TopicType
+  estimatedMins     Int?
+  sequenceNo        Int
+  isPreviewable     Boolean         @default(false)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  module            Module          @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progressRecords   TopicProgress[]
+
+  @@unique([moduleId, sequenceNo])
+  @@index([moduleId])
+}
+
+model Enrollment {
+  id                String            @id @default(cuid())
+  userId            String
+  courseId          String
+  status            EnrollmentStatus  @default(ACTIVE)
+  completionPercent Float             @default(0)
+  enrolledAt        DateTime          @default(now())
+  completedAt       DateTime?
+
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course            Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([courseId, status])
+}
+
+model TopicProgress {
+  id                String          @id @default(cuid())
+  userId            String
+  topicId           String
+  isCompleted       Boolean         @default(false)
+  progressPercent   Float           @default(0)
+  startedAt         DateTime?
+  completedAt       DateTime?
+  lastAccessedAt    DateTime?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic             Topic           @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
+  @@index([topicId])
+}
+
+model LiveSession {
+  id                String            @id @default(cuid())
+  courseId          String
+  hostUserId        String
+  title             String
+  description       String?
+  provider          String?
+  meetingUrl        String?
+  startsAt          DateTime
+  endsAt            DateTime
+  status            SessionStatus     @default(SCHEDULED)
+  maxParticipants   Int?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  course            Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  hostUser          User              @relation("LiveSessionHost", fields: [hostUserId], references: [id], onDelete: Restrict)
+  attendance        SessionAttendance[]
+
+  @@index([courseId, startsAt])
+  @@index([hostUserId, startsAt])
+}
+
+model SessionAttendance {
+  id                String            @id @default(cuid())
+  sessionId         String
+  userId            String
+  attendanceStatus  AttendanceStatus  @default(ABSENT)
+  joinedAt          DateTime?
+  leftAt            DateTime?
+  notes             String?
+
+  session           LiveSession       @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, userId])
+  @@index([userId, attendanceStatus])
+}
+
+model LeaveRequest {
+  id                String          @id @default(cuid())
+  userId            String
+  leaveType         LeaveType
+  reason            String
+  startsOn          DateTime
+  endsOn            DateTime
+  status            LeaveStatus     @default(PENDING)
+  requestedAt       DateTime        @default(now())
+  reviewedAt        DateTime?
+  reviewedById      String?
+
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status])
+  @@index([startsOn, endsOn])
+}
+
+model JobPlacement {
+  id                String            @id @default(cuid())
+  courseId          String?
+  companyName       String
+  roleTitle         String
+  location          String?
+  packageLpa        Float?
+  experienceRequired String?
+  description       String
+  applyUrl          String?
+  lastDateToApply   DateTime?
+  isActive          Boolean           @default(true)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  course            Course?           @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  applications      JobApplication[]
+
+  @@index([courseId])
+  @@index([isActive, createdAt])
+}
+
+model JobApplication {
+  id                String               @id @default(cuid())
+  userId            String
+  jobPlacementId    String
+  status            JobApplicationStatus @default(APPLIED)
+  resumeUrl         String?
+  appliedAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+
+  user              User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobPlacement      JobPlacement         @relation(fields: [jobPlacementId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, jobPlacementId])
+  @@index([status, appliedAt])
+}
