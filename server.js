@@ -1,48 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const data = require('./data');
 
 const PORT = Number(process.env.PORT || 4173);
 const ROOT = __dirname;
-
-const data = {
-  profile: {
-    name: 'pavan',
-    batch: 'KOD-VTU-INTERN-BATCH8',
-    status: 'Online',
-    avatar: '👾',
-    menu: [
-      '👤 My Account',
-      '⌨ Compiler',
-      '💬 User Feedback',
-      '📄 Resume Builder',
-      '🧾 Mock Interview',
-      '📅 Apply for Leave',
-      '📖 Session diaries',
-      '↪ Log Out'
-    ]
-  },
-  hero: {
-    tagline: 'FROM LEARNING TO EARNING',
-    title: 'Ready for your dream job, Pavan H.S?',
-    subtitle: 'Code your way to success: Learn, Build, Achieve with KodNest!',
-    chips: ['</> Learn', '🔗 Build', '◎ Achieve'],
-    assistantTitle: '⚡ Meet BroKod',
-    assistantSubtitle: 'Your AI learning assistant, available 24/7 to guide you through your coding journey.'
-  },
-  liveSessions: [
-    { id: 1, color: 'cyan', code: 'P', title: 'Python With Generative AI - 2026 - ...', mentor: 'KodNest', status: 'Completed', time: '08:00 AM - 09:30 AM' },
-    { id: 2, color: 'orange', code: 'P', title: 'Python With Generative AI - 2026 - ...', mentor: 'KodNest', status: 'Completed', time: '08:00 AM - 09:30 AM' },
-    { id: 3, color: 'violet', code: 'P', title: 'Python With Generative AI - 2026 - ...', mentor: 'KodNest', status: 'Completed', time: '08:00 AM - 09:30 AM' }
-  ],
-  selfPaced: {
-    color: 'violet',
-    code: 'A',
-    title: 'Aptitude and Reasoning',
-    mentor: 'KodNest',
-    status: 'Self-Paced'
-  }
-};
 
 const types = {
   '.html': 'text/html; charset=utf-8',
@@ -63,6 +25,7 @@ function sendJson(res, statusCode, payload) {
 function serveFile(reqPath, res, method = 'GET') {
   const safePath = path.normalize(reqPath).replace(/^\.\.(\/|\\|$)/, '');
   let filePath = path.join(ROOT, safePath);
+
   if (safePath === '/') {
     filePath = path.join(ROOT, 'index.html');
   }
@@ -84,10 +47,12 @@ function serveFile(reqPath, res, method = 'GET') {
 
     const ext = path.extname(filePath).toLowerCase();
     res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream' });
+
     if (method === 'HEAD') {
       res.end();
       return;
     }
+
     res.end(content);
   });
 }
@@ -115,6 +80,7 @@ const server = http.createServer((req, res) => {
       res.end();
       return;
     }
+
     serveFile(url.pathname, res, req.method);
     return;
   }
